@@ -36,6 +36,13 @@ const keyPressListener = $(document).keydown(function (e) {
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
   const moveValue = 5;
+  if ([32, 37, 38, 39, 40].includes(e.which)) {
+    // Prevent default keystroke behaviour
+    if (e.stopPropagation) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  }
   // Up
   if (e.which == 38 && yPos - moveValue >= 0) {
     setTailPosition("top", yPos - moveValue);
@@ -50,11 +57,6 @@ const keyPressListener = $(document).keydown(function (e) {
     setTailPosition("left", xPos - moveValue);
     // Space Bar
   } else if (e.which == 32) {
-    // Prevent default Space Bar behaviour
-    if (e.stopPropagation) {
-      e.stopPropagation();
-      e.preventDefault();
-    }
     startStopSwitch();
   }
 });
