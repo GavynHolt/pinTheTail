@@ -1,0 +1,105 @@
+html {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100vh;
+  background-color: rgb(27, 73, 158);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.wrapper {
+  max-width: 800px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+  color: #fff;
+  text-align: center;
+}
+
+h1 {
+  margin: 20px 0 0 0;
+  font-size: 1.5rem;
+}
+
+h2 {
+  margin: 20px auto;
+  font-size: 2.5rem;
+}
+
+h3 {
+  text-decoration: underline;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.donkey {
+  background-image: url(./donkey.png);
+  background-color: rgb(32, 98, 221);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 450px;
+  height: 500px;
+  border: 2px solid black;
+  position: relative;
+  margin: 0 auto;
+}
+
+.tail {
+  position: relative;
+  display: none;
+  top: 250px;
+  left: 245px;
+  height: 40%;
+}
+
+.hitbox {
+  position: absolute;
+  top: 235px;
+  left: 220px;
+  width: 80px;
+  height: 80px;
+  border: 1px solid red;
+}
+
+.timer {
+  position: absolute;
+  color: #fff;
+  bottom: 5px;
+  left: 5px;
+  font-size: 1.25rem;
+}
+
+.instructions {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+}
+
+footer {
+  text-align: center;
+  color: #fff;
+}
+
+a,
+a:visited {
+  color: #fff;
+  text-decoration: none;
+}
