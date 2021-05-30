@@ -70,6 +70,7 @@ h3 {
 }
 
 .hitbox {
+  display: none;
   position: absolute;
   top: 235px;
   left: 220px;
