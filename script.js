@@ -1,26 +1,33 @@
+// Get the timer box to reference many times
+const $timerBox = $(".timer");
+// Get tail box for reference
+const $tail = $(".tail");
+// Global timer ID
+let timerID;
+// Boolean to check if game is already running
+let isRunning = false;
+// Get START/STOP button
+$startGame = $("#startGame");
+
 // Get tail width and heigh to prevent tail from crossing border
-const tailWidth = parseInt($(".tail").width());
-const tailHeight = parseInt($(".tail").height());
+const tailWidth = parseInt($tail.width());
+const tailHeight = parseInt($tail.height());
 
 // Size of Donkey Div
 const MAX_WIDTH = 450 - tailWidth;
 const MAX_HEIGHT = 500 - tailHeight;
-// Get the timer box to reference many times
-const timerBox = $(".timer");
-// Global timer ID
-let timerID;
 
 // Gets tail position, removes last two letters "px", and parses as an int to later modify
 // Axis values are a string of either "top" or "left"
 function getTailPosition(axis) {
-  return parseInt($(".tail").css(axis).slice(0, -2));
+  return parseInt($tail.css(axis).slice(0, -2));
 }
 
 // Sets new tail position, returning position value to string and adding "px" to conform to CSS requirements
 // Axis values are a string of either "top" or "left"
 function setTailPosition(axis, value) {
   stringValue = String(value) + "px";
-  $(".tail").css(axis, stringValue);
+  $tail.css(axis, stringValue);
 }
 
 // Key press listener for up, right, down, left and space bar key presses
@@ -48,12 +55,45 @@ const keyPressListener = $(document).keydown(function (e) {
       e.stopPropagation();
       e.preventDefault();
     }
-    validateEndGame();
+    startStopSwitch();
   }
 });
 
-function validateEndGame() {
-  window.clearInterval(timerID);
+function startGame() {
+  const randomX = Math.floor(Math.random() * MAX_WIDTH);
+  const randomY = Math.floor(Math.random() * MAX_HEIGHT);
+  setTailPosition("left", randomX);
+  setTailPosition("top", randomY);
+
+  // READY SET GO timer
+  const readyText = ["READY...", "SET...", "GO!"];
+  let i = 0;
+  $timerBox.text(readyText[i]);
+  const readySetGo = window.setInterval(function () {
+    i++;
+    $timerBox.text(readyText[i]);
+    if (i === readyText.length - 1) {
+      clearInterval(readySetGo);
+
+      // Display the tail on the screen
+      $tail.css("display", "inherit");
+
+      // Timer until game ends
+      let seconds = 10;
+      const startTimer = window.setInterval(function () {
+        timerID = startTimer;
+        console.log(timerID); // set global timerID for later reference
+        $timerBox.text(`Seconds Left: ${seconds}`);
+        if (seconds == 0) {
+          endGame();
+        }
+        seconds--;
+      }, 1000);
+    }
+  }, 1000);
+}
+
+function endGame() {
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
   console.log("x: " + xPos);
@@ -63,40 +103,25 @@ function validateEndGame() {
   } else {
     alert("Try Again WOMP WOMP");
   }
-  timerBox.text("");
+  // Reset timer and other displayed items
+  // (timerBox text, Tail, isRunning Boolean and Button text)
+  window.clearInterval(timerID);
+  $timerBox.text("");
+  $tail.css("display", "none");
+  isRunning = false;
+  $startGame.text("START");
 }
 
-// On START click, start game timer
-$("#startGame").on("click", function () {
-  const randomX = Math.floor(Math.random() * MAX_WIDTH);
-  const randomY = Math.floor(Math.random() * MAX_HEIGHT);
-  setTailPosition("left", randomX);
-  setTailPosition("top", randomY);
+function startStopSwitch() {
+  if (!isRunning) {
+    isRunning = true;
+    startGame();
+    $startGame.text("STOP");
+  } else {
+    // Stop Game
+    endGame();
+  }
+}
 
-  // READY SET GO timer
-  const readyText = ["READY...", "SET...", "GO!"];
-  let i = 0;
-  timerBox.text(readyText[i]);
-  const readySetGo = window.setInterval(function () {
-    i++;
-    timerBox.text(readyText[i]);
-    if (i === readyText.length - 1) {
-      clearInterval(readySetGo);
-
-      // Display the tail on the screen
-      $(".tail").css("display", "inherit");
-
-      // Timer until game ends
-      let seconds = 10;
-      const startTimer = window.setInterval(function () {
-        timerID = startTimer;
-        console.log(timerID); // set global timerID for later reference
-        timerBox.text(`Seconds Left: ${seconds}`);
-        if (seconds == 0) {
-          validateEndGame();
-        }
-        seconds--;
-      }, 1000);
-    }
-  }, 1000);
-});
+// On START/STOP click, run game start/stop switch
+$startGame.on("click", startStopSwitch);
