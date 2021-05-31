@@ -117,16 +117,22 @@ function resetGame() {
   window.clearInterval(timerID);
   window.clearInterval(readySetGoID);
   $timerBox.text("");
+  $startGame.text("START");
   $tail.css("display", "none");
   isRunning = false;
-  $startGame.text("START");
 }
 
 function startStopSwitch() {
+  console.log($tail.css("display"));
   if (!isRunning) {
     isRunning = true;
-    startGame();
     $startGame.text("STOP");
+    startGame();
+    //if game timer has not yet passed GO (and display of tail is still none)
+    // then no need to evaluate score, simply reset game
+  } else if ($tail.css("display") === "none") {
+    resetGame();
+    // evaluate score AND reset game
   } else {
     // Stop Game
     endGame();
