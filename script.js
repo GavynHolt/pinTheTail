@@ -4,6 +4,8 @@ const $timerBox = $(".timer");
 const $tail = $(".tail");
 // Global timer ID
 let timerID;
+// READY SET GO timer ID
+let readySetGoID;
 // Boolean to check if game is already running
 let isRunning = false;
 // Get START/STOP button
@@ -70,11 +72,11 @@ function startGame() {
   // READY SET GO timer
   const readyText = ["READY...", "SET...", "GO!"];
   let i = 0;
-  $timerBox.text(readyText[i]);
   const readySetGo = window.setInterval(function () {
-    i++;
+    readySetGoID = readySetGo;
     $timerBox.text(readyText[i]);
-    if (i === readyText.length - 1) {
+    i++;
+    if (i === readyText.length) {
       clearInterval(readySetGo);
 
       // Display the tail on the screen
@@ -96,6 +98,7 @@ function startGame() {
 }
 
 function endGame() {
+  // Check tail position and compare to hitbox
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
   console.log("x: " + xPos);
@@ -105,9 +108,14 @@ function endGame() {
   } else {
     alert("Try Again WOMP WOMP");
   }
+  resetGame();
+}
+
+function resetGame() {
   // Reset timer and other displayed items
   // (timerBox text, Tail, isRunning Boolean and Button text)
   window.clearInterval(timerID);
+  window.clearInterval(readySetGoID);
   $timerBox.text("");
   $tail.css("display", "none");
   isRunning = false;
