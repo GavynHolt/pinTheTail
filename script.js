@@ -2,10 +2,8 @@
 const $timerBox = $(".timer");
 // Get tail box for reference
 const $tail = $(".tail");
-// Global timer ID
-let timerID;
-// READY SET GO timer ID
-let readySetGoID;
+// Game Timer ID
+let gameTimer;
 // Boolean to check if game is already running
 let isRunning = false;
 // Get START/STOP button
@@ -63,37 +61,38 @@ const keyPressListener = $(document).keydown(function (e) {
   }
 });
 
+function startTimer() {
+  // Game Timer definition
+  const timer = () => {
+    if (i < readySetGoArray.length) {
+      $timerBox.text(readySetGoArray[i]);
+      i++;
+    } else if (seconds >= 0) {
+      // Display the tail on the screen
+      $tail.css("display", "inherit");
+      $timerBox.text(`Seconds Left: ${seconds}`);
+      seconds--;
+    } else {
+      endGame();
+    }
+  };
+
+  // First, display Ready, Set Go, Then a 10 second countdown
+  const readySetGoArray = ["READY...", "SET...", "GO!"];
+  let i = 0;
+  let seconds = 10;
+  // call timer first circumvent delay of first iteration caused by setInterval
+  timer();
+  gameTimer = setInterval(timer, 1000);
+}
+
 function startGame() {
   const randomX = Math.floor(Math.random() * MAX_WIDTH);
   const randomY = Math.floor(Math.random() * MAX_HEIGHT);
   setTailPosition("left", randomX);
   setTailPosition("top", randomY);
 
-  // READY SET GO timer
-  const readyText = ["READY...", "SET...", "GO!"];
-  let i = 0;
-  const readySetGoTimer = setInterval(function () {
-    readySetGoID = readySetGoTimer;
-    $timerBox.text(readyText[i]);
-    i++;
-    if (i === readyText.length) {
-      clearInterval(readySetGoID);
-
-      // Display the tail on the screen
-      $tail.css("display", "inherit");
-
-      // Timer until game ends
-      let seconds = 10;
-      const secondsTimer = setInterval(function () {
-        timerID = secondsTimer;
-        $timerBox.text(`Seconds Left: ${seconds}`);
-        if (seconds == 0) {
-          endGame();
-        }
-        seconds--;
-      }, 1000);
-    }
-  }, 1000);
+  startTimer();
 }
 
 function endGame() {
@@ -111,8 +110,7 @@ function endGame() {
 function resetGame() {
   // Reset timer and other displayed items
   // (timerBox text, Tail, isRunning Boolean and Button text)
-  clearInterval(timerID);
-  clearInterval(readySetGoID);
+  clearInterval(gameTimer);
   $timerBox.text("");
   $startGame.text("START");
   $tail.css("display", "none");
