@@ -72,21 +72,20 @@ function startGame() {
   // READY SET GO timer
   const readyText = ["READY...", "SET...", "GO!"];
   let i = 0;
-  const readySetGo = window.setInterval(function () {
-    readySetGoID = readySetGo;
+  const readySetGoTimer = setInterval(function () {
+    readySetGoID = readySetGoTimer;
     $timerBox.text(readyText[i]);
     i++;
     if (i === readyText.length) {
-      clearInterval(readySetGo);
+      clearInterval(readySetGoID);
 
       // Display the tail on the screen
       $tail.css("display", "inherit");
 
       // Timer until game ends
       let seconds = 10;
-      const startTimer = window.setInterval(function () {
-        timerID = startTimer;
-        console.log(timerID); // set global timerID for later reference
+      const secondsTimer = setInterval(function () {
+        timerID = secondsTimer;
         $timerBox.text(`Seconds Left: ${seconds}`);
         if (seconds == 0) {
           endGame();
@@ -101,8 +100,6 @@ function endGame() {
   // Check tail position and compare to hitbox
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
-  console.log("x: " + xPos);
-  console.log("y: " + yPos);
   if (xPos >= 220 && xPos <= 300 && yPos >= 235 && yPos <= 315) {
     alert("Congratulations! Great Success!");
   } else {
@@ -114,8 +111,8 @@ function endGame() {
 function resetGame() {
   // Reset timer and other displayed items
   // (timerBox text, Tail, isRunning Boolean and Button text)
-  window.clearInterval(timerID);
-  window.clearInterval(readySetGoID);
+  clearInterval(timerID);
+  clearInterval(readySetGoID);
   $timerBox.text("");
   $startGame.text("START");
   $tail.css("display", "none");
@@ -123,7 +120,6 @@ function resetGame() {
 }
 
 function startStopSwitch() {
-  console.log($tail.css("display"));
   if (!isRunning) {
     isRunning = true;
     $startGame.text("STOP");
