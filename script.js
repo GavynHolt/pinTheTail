@@ -70,7 +70,7 @@ function startTimer() {
     } else if (seconds >= 0) {
       // Display the tail on the screen
       $tail.css("display", "inherit");
-      $timerBox.text(`Seconds Left: ${seconds}`);
+      $timerBox.text(`Timer: ${seconds}s`);
       seconds--;
     } else {
       endGame();
@@ -99,7 +99,7 @@ function endGame() {
   // Check tail position and compare to hitbox
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
-  if (xPos >= 220 && xPos <= 300 && yPos >= 235 && yPos <= 315) {
+  if (xPos >= 250 && xPos <= 330 && yPos >= 235 && yPos <= 315) {
     alert("Congratulations! Great Success!");
   } else {
     alert("Try Again WOMP WOMP");
@@ -111,7 +111,8 @@ function resetGame() {
   // Reset timer and other displayed items
   // (timerBox text, Tail, isRunning Boolean and Button text)
   clearInterval(gameTimer);
-  $timerBox.text("");
+  // $timerBox.text("");
+  $timerBox.toggleClass("display");
   $startGame.text("START");
   $tail.css("display", "none");
   isRunning = false;
@@ -121,6 +122,7 @@ function startStopSwitch() {
   if (!isRunning) {
     isRunning = true;
     $startGame.text("STOP");
+    $timerBox.toggleClass("display");
     startGame();
     //if game timer has not yet passed GO (and display of tail is still none)
     // then no need to evaluate score, simply reset game

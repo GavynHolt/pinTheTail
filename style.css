@@ -104,18 +104,28 @@ button {
   display: none;
   position: absolute;
   top: 235px;
-  left: 220px;
+  left: 250px;
   width: 80px;
   height: 80px;
   border: 1px solid red;
 }
 
 .timer {
+  display: none;
   position: absolute;
-  color: #F0FFFF;
+  /* color: #F0FFFF; */
+  background-color: #F0FFFF;
+  border: 1px solid black;  
+  padding: 5px;
+  color: black; 
+  width: 110px;
   bottom: 5px;
   left: 5px;
   font-size: 1.25rem;
+}
+
+.display { 
+  display: block;
 }
 
 footer {
