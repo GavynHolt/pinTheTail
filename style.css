@@ -66,7 +66,8 @@ button {
   top: 0;
 }
 
-.start-button-animation {
+.start-button-animation,
+.modal button:active {
   top: 2px;
   box-shadow: 0 0 black;
   transition-property: top, box-shadow;
@@ -157,4 +158,41 @@ a,
 a:visited {
   color: #F8F8FF;
   text-decoration: none;
+}
+
+.modal-hide {
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  background-color: grey;
+  border: 2px solid black;
+  border-radius: 15px;
+  width: 400px;
+  min-height: 200px;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  text-align: center;
+
+}
+
+.modal-content { 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal h4 {
+  font-size: 1.75rem;
+  margin: 10px auto;
+}
+
+.modal p {
+  margin: 10px;
+}
+
+.modal button {
+  margin: 20px;
 }

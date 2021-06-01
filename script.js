@@ -130,9 +130,16 @@ function endGame() {
   // Check tail position and compare to hitbox
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
+  let modalMessage = "";
   if (xPos >= 250 && xPos <= 330 && yPos >= 235 && yPos <= 315) {
-    alert("Congratulations! Great Success!");
+    // alert("Congratulations! Great Success!");
+    modalMessage = "Congratulations! Great Success!";
   } else {
-    alert("Try Again WOMP WOMP");
+    modalMessage = "Try Again WOMP WOMP";
   }
+  $(".modal-message").text(modalMessage);
+  $(".modal").removeClass("modal-hide");
+  $(".modal-close").on("click", function () {
+    $(".modal").addClass("modal-hide");
+  });
 }
