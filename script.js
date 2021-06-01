@@ -61,6 +61,27 @@ const keyPressListener = $(document).keydown(function (e) {
   }
 });
 
+// On START/STOP click, run game start/stop switch
+$startGame.on("click", startStopSwitch);
+
+function startStopSwitch() {
+  if (!isRunning) {
+    isRunning = true;
+    $startGame.text("STOP");
+    $timerBox.toggleClass("display");
+    $startGame.toggleClass("start-button-animation");
+    startGame();
+  } else {
+    // ("READY SET GO" phase) No need to evaluate score, simply reset game visuals and timer
+    resetGame();
+    if ($tail.hasClass("display")) {
+      // if tail is displayed on screen... remove tail and Evaluate score
+      $tail.removeClass("display");
+      endGame();
+    }
+  }
+}
+
 function startTimer() {
   // Game Timer definition
   const timer = () => {
@@ -69,11 +90,11 @@ function startTimer() {
       i++;
     } else if (seconds >= 0) {
       // Display the tail on the screen
-      $tail.css("display", "inherit");
+      $tail.addClass("display");
       $timerBox.text(`Timer: ${seconds}s`);
       seconds--;
     } else {
-      endGame();
+      startStopSwitch();
     }
   };
 
@@ -95,6 +116,16 @@ function startGame() {
   startTimer();
 }
 
+function resetGame() {
+  // Reset timer and other displayed items
+  // (timerBox text, Tail, isRunning Boolean and Button text)
+  clearInterval(gameTimer);
+  $timerBox.toggleClass("display");
+  $startGame.text("START");
+  $startGame.toggleClass("start-button-animation");
+  isRunning = false;
+}
+
 function endGame() {
   // Check tail position and compare to hitbox
   const xPos = getTailPosition("left");
@@ -104,36 +135,4 @@ function endGame() {
   } else {
     alert("Try Again WOMP WOMP");
   }
-  resetGame();
 }
-
-function resetGame() {
-  // Reset timer and other displayed items
-  // (timerBox text, Tail, isRunning Boolean and Button text)
-  clearInterval(gameTimer);
-  // $timerBox.text("");
-  $timerBox.toggleClass("display");
-  $startGame.text("START");
-  $tail.css("display", "none");
-  isRunning = false;
-}
-
-function startStopSwitch() {
-  if (!isRunning) {
-    isRunning = true;
-    $startGame.text("STOP");
-    $timerBox.toggleClass("display");
-    startGame();
-    //if game timer has not yet passed GO (and display of tail is still none)
-    // then no need to evaluate score, simply reset game
-  } else if ($tail.css("display") === "none") {
-    resetGame();
-    // evaluate score AND reset game
-  } else {
-    // Stop Game
-    endGame();
-  }
-}
-
-// On START/STOP click, run game start/stop switch
-$startGame.on("click", startStopSwitch);

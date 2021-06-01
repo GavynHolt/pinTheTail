@@ -56,11 +56,21 @@ main {
 
 button {
   padding: 10px 20px;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 8px;
   width: 100px;
   color: #3533d7;
   font-weight: 600;
+  box-shadow: 1px 2px black;
+  position: relative;
+  top: 0;
+}
+
+.start-button-animation {
+  top: 2px;
+  box-shadow: 0 0 black;
+  transition-property: top, box-shadow;
+  transition: 0.1s;
 }
 
 .donkey {
@@ -116,6 +126,7 @@ button {
   /* color: #F0FFFF; */
   background-color: #F0FFFF;
   border: 1px solid black;  
+  border-radius: 5px;
   padding: 5px;
   color: black; 
   width: 110px;
