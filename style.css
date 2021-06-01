@@ -1,31 +1,32 @@
-html {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: ''; clear: both; height: 0; }
+
+html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+
+*, *:before, *:after {box-sizing: inherit}
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+
 
 body {
   height: 100vh;
-  background-color: rgb(27, 73, 158);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #32a0cc;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .wrapper {
   max-width: 900px;
   width: 95%;
-  margin: 0 auto;
+  margin: auto;
 }
 
 h1,
-h2,
-h3 {
-  color: #fff;
+h2 {
+  color: #F8F8FF;
   text-align: center;
 }
 
@@ -36,12 +37,19 @@ h1 {
 }
 
 h2 {
-  margin: 20px auto;
+  margin: 0 auto;
+  padding: 20px 0;
   font-size: 2.5rem;
 }
 
 h3 {
   text-decoration: underline;
+  margin: 0;
+}
+
+header {
+  background-color: #7633e3;
+  border-bottom: 3px solid black;
 }
 
 main {
@@ -53,11 +61,15 @@ main {
 
 button {
   padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: blue;
+  font-weight: 600;
 }
 
 .donkey {
   background-image: url(./donkey.png);
-  background-color: rgb(32, 98, 221);
+  background-color: #3533d7;
   background-repeat: no-repeat;
   background-size: cover;
   flex-shrink: 0;
@@ -69,8 +81,12 @@ button {
 }
 
 .instructions {
-  text-align: center;
-  color: #fff;
+  text-align: left;
+  background-color: #3533d7;
+  color: #F0FFFF;
+  padding: 20px;
+  margin: 20px;
+  border: 2px solid black;
 }
 
 .tail {
@@ -93,19 +109,25 @@ button {
 
 .timer {
   position: absolute;
-  color: #fff;
+  color: #F0FFFF;
   bottom: 5px;
   left: 5px;
   font-size: 1.25rem;
 }
 
 footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 3px solid black;
+  background-color: #7633e3;
   text-align: center;
-  color: #fff;
+  color: #F8F8FF;
 }
 
 a,
 a:visited {
-  color: #fff;
+  color: #F8F8FF;
   text-decoration: none;
 }
