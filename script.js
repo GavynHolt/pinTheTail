@@ -57,7 +57,12 @@ const keyPressListener = $(document).keydown(function (e) {
     setTailPosition("left", xPos - moveValue);
     // Space Bar
   } else if (e.which == 32) {
-    startStopSwitch();
+    // if modal is displayed, space bar will close it
+    if (!$(".modal").hasClass("modal-hide")) {
+      $(".modal").addClass("modal-hide");
+    } else {
+      startStopSwitch();
+    }
   }
 });
 
