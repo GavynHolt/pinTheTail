@@ -102,12 +102,13 @@ function startTimer() {
   const readySetGoArray = ["READY...", "SET...", "GO!"];
   let i = 0;
   let seconds = 10;
-  // call timer first circumvent delay of first iteration caused by setInterval
+  // call timer first to circumvent delay of first iteration caused by setInterval
   timer();
   gameTimer = setInterval(timer, 1000);
 }
 
 function startGame() {
+  // Set tail to random x,y position in bordered area
   const randomX = Math.floor(Math.random() * MAX_WIDTH);
   const randomY = Math.floor(Math.random() * MAX_HEIGHT);
   setTailPosition("left", randomX);
@@ -131,12 +132,13 @@ function endGame() {
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
   let modalMessage = "";
+  // set modal message
   if (xPos >= 250 && xPos <= 330 && yPos >= 235 && yPos <= 315) {
-    // alert("Congratulations! Great Success!");
     modalMessage = "Congratulations! Great Success!";
   } else {
     modalMessage = "Try Again WOMP WOMP";
   }
+  // show modal by removing the .modal-hide class
   $(".modal-message").text(modalMessage);
   $(".modal").removeClass("modal-hide");
   $(".modal-close").on("click", function () {
