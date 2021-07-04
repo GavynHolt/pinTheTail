@@ -274,9 +274,9 @@ button {
   border: 1px solid black;
   box-shadow: 1px 2px black;
   border-radius: 8px;
-  background-color: #f0ffff;
+  background-color: rgb(240, 255, 255);
   width: 100px;
-  color: #3533d7;
+  color: rgb(53, 51, 215);
   font-weight: 600;
 }
 
