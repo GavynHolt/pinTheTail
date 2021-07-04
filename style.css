@@ -270,14 +270,14 @@ main {
 
 button {
   padding: 10px 20px;
+  margin: 1rem;
   border: 1px solid black;
+  box-shadow: 1px 2px black;
   border-radius: 8px;
+  background-color: #f0ffff;
   width: 100px;
   color: #3533d7;
   font-weight: 600;
-  box-shadow: 1px 2px black;
-  position: relative;
-  top: 0;
 }
 
 .start-button-animation,
@@ -319,11 +319,6 @@ button {
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.instructions button {
-  margin: 1rem;
-  background-color: #f0ffff;
 }
 
 .tail {
