@@ -7,15 +7,19 @@ let gameTimer;
 // Boolean to check if game is already running
 let isRunning = false;
 // Get START/STOP button
-$startGame = $("#startGame");
+const $startGame = $("#startGame");
+// Get game canvas ".donkey"
+const $gameCanvas = $(".game-canvas");
+// Get hitbox
+const $hitbox = $(".hitbox");
 
 // Get tail width and heigh to prevent tail from crossing border
 const tailWidth = parseInt($tail.width());
 const tailHeight = parseInt($tail.height());
 
 // Size of Donkey Div
-const MAX_WIDTH = 450 - tailWidth;
-const MAX_HEIGHT = 500 - tailHeight;
+const MAX_WIDTH = $gameCanvas.width() - tailWidth;
+const MAX_HEIGHT = $gameCanvas.height() - tailHeight;
 
 // Gets tail position, removes last two letters "px", and parses as an int to later modify
 // Axis values are a string of either "top" or "left"
@@ -136,9 +140,19 @@ function endGame() {
   // Check tail position and compare to hitbox
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
+  // check hitbox position
+  const hitboxLeft = parseInt($hitbox.css("left"));
+  const hitboxRight = parseInt($hitbox.css("left")) + $hitbox.width();
+  const hitboxTop = parseInt($hitbox.css("top"));
+  const hitboxBottom = parseInt($hitbox.css("top")) + $hitbox.height();
   let modalMessage = "";
   // set modal message
-  if (xPos >= 250 && xPos <= 330 && yPos >= 235 && yPos <= 315) {
+  if (
+    xPos >= hitboxLeft &&
+    xPos <= hitboxRight &&
+    yPos >= hitboxTop &&
+    yPos <= hitboxBottom
+  ) {
     modalMessage = "Congratulations! Great Success!";
   } else {
     modalMessage = "Try Again WOMP WOMP";
