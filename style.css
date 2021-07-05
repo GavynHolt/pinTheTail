@@ -207,6 +207,8 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  /* Disable iphone double tap zoom */
+  touch-action: manipulation;
 }
 
 .sr-only {
@@ -251,8 +253,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* Disable iphone double tap zoom */
-  touch-action: manipulation;
 }
 
 button {
