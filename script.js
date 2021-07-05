@@ -34,6 +34,43 @@ function setTailPosition(axis, value) {
   $tail.css(axis, stringValue);
 }
 
+// Arrow button listeners
+const upArrowListener = $(".up-arrow").on("click", function () {
+  const xPos = getTailPosition("left");
+  const yPos = getTailPosition("top");
+  const moveValue = 5;
+  if (yPos - moveValue >= 0) {
+    setTailPosition("top", yPos - moveValue);
+  }
+});
+
+const downArrowListener = $(".down-arrow").on("click", function () {
+  const xPos = getTailPosition("left");
+  const yPos = getTailPosition("top");
+  const moveValue = 5;
+  if (yPos + moveValue <= MAX_HEIGHT) {
+    setTailPosition("top", yPos + moveValue);
+  }
+});
+
+const leftArrowListener = $(".left-arrow").on("click", function () {
+  const xPos = getTailPosition("left");
+  const yPos = getTailPosition("top");
+  const moveValue = 5;
+  if (xPos - moveValue >= 0) {
+    setTailPosition("left", xPos - moveValue);
+  }
+});
+
+const rightArrowListener = $(".right-arrow").on("click", function () {
+  const xPos = getTailPosition("left");
+  const yPos = getTailPosition("top");
+  const moveValue = 5;
+  if (xPos + moveValue <= MAX_WIDTH) {
+    setTailPosition("left", xPos + moveValue);
+  }
+});
+
 // Key press listener for up, right, down, left and space bar key presses
 // Each if statement prevents tail from going beyond the border of the Donkey Div
 const keyPressListener = $(document).keydown(function (e) {
