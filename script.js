@@ -38,7 +38,7 @@ function setTailPosition(axis, value) {
 const upArrowListener = $(".up-arrow").on("click", function () {
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
-  const moveValue = 8;
+  const moveValue = 10;
   if (yPos - moveValue >= 0) {
     setTailPosition("top", yPos - moveValue);
   }
@@ -47,7 +47,7 @@ const upArrowListener = $(".up-arrow").on("click", function () {
 const downArrowListener = $(".down-arrow").on("click", function () {
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
-  const moveValue = 8;
+  const moveValue = 10;
   if (yPos + moveValue <= MAX_HEIGHT) {
     setTailPosition("top", yPos + moveValue);
   }
@@ -56,7 +56,7 @@ const downArrowListener = $(".down-arrow").on("click", function () {
 const leftArrowListener = $(".left-arrow").on("click", function () {
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
-  const moveValue = 8;
+  const moveValue = 10;
   if (xPos - moveValue >= 0) {
     setTailPosition("left", xPos - moveValue);
   }
@@ -65,7 +65,7 @@ const leftArrowListener = $(".left-arrow").on("click", function () {
 const rightArrowListener = $(".right-arrow").on("click", function () {
   const xPos = getTailPosition("left");
   const yPos = getTailPosition("top");
-  const moveValue = 8;
+  const moveValue = 10;
   if (xPos + moveValue <= MAX_WIDTH) {
     setTailPosition("left", xPos + moveValue);
   }
