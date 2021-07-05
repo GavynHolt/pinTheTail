@@ -15,8 +15,7 @@
 
   <body>
     <header>
-      <h1>Project 1</h1>
-      <h2>Pin The Tail On The Donkey</h2>
+      <h1>Pin The Tail On The Donkey</h1>
     </header>
 
     <main class="wrapper">
@@ -27,7 +26,7 @@
 
         <div class="modal modal-hide">
           <div class="modal-content">
-            <h4>Result</h4>
+            <h2>Result</h2>
             <p class="modal-message">
               <!-- success or fail message goes here with jQuery -->
             </p>
@@ -36,7 +35,16 @@
         </div>
       </div>
       <div class="instructions">
-        <div>
+        <div class="arrows">
+          <button><i class="fas fa-arrow-left"></i></button>
+          <div class="up-down">
+            <button><i class="fas fa-arrow-up"></i></button>
+            <button><i class="fas fa-arrow-down"></i></button>
+          </div>
+          <button><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <button id="startGame">START</button>
+        <div class="keyboard-instructions">
           <p>
             <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-right"></i>
             <i class="fas fa-arrow-down"> </i>
@@ -44,7 +52,6 @@
           </p>
           <p><i class="fas fa-keyboard"></i> SPACE BAR to pin tail</p>
         </div>
-        <button id="startGame">START</button>
       </div>
     </main>
 
